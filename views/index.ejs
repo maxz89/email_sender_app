@@ -7,13 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap" rel="stylesheet">
     <title>Email Template</title>
      
+    <style>
+        .message {
+    font-family: 'Titillium Web', sans-serif;
+    border-style: solid;
+    border-width: 5px;
+    border-color:rgb(49, 129, 49);
+    padding-left: 10px;
+}
+    </style>
     
 </head>
 
 <body>
-    <!-- <img src="cid: 'unique@nodemailer.com'"> -->
+    <img src="https://cdn.shopify.com/s/files/1/0076/0889/3525/files/rerouted-compact-RGB-reverse-black-large.png?v=1625111582" alt='rerouted logo' style='height: 40px; width: 200px;'>
     <div class="message">
-        <p>Congratulations! Someone bought your item, all thats left is shipping and payment! </p>
+        <p>Congratulations! Someone bought your <span><%= itemName %></span>, all thats left is shipping and payment! </p>
         <p></p>
         <p>We need to pay you! This is a beta version of our system so we are currently doing manual payouts. </p>
         <p></p>
