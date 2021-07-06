@@ -56,7 +56,7 @@ async function sendEmail(data) {
 }
 
 
-
+//this handles webhook posts from shopify whenever a seller sells an item, and sends an email to the seller with shipping and payment info
 app.post('/webhook/order', async (req, res) => {
     const body = await req.body;
     var lineItems = body.line_items;
@@ -79,13 +79,13 @@ app.post('/webhook/order', async (req, res) => {
         };
 
         if (customerAddress.address2 != "") {data.address2 = customerAddress.address2;} //sets an address2 if there is an address2        
-        
+        if (data.customerEmail == null) {data.customerEmail = body.contact_email;}
         sendEmail(data); //passess data from shopify to our email template to send
     }
 
     else if (lineItems.length > 1) //if there are more than one item this order...
     {
-        for (var i = 0; i < lineItems.length; i++) //iterate through each item
+        for (var i = 0; i < lineItems.length; i++) //iterate through each item in the order
         {
             var emails = []; //temporary array for items with the same seller
             var duplicate = false; //boolean for whether this item's seller sold another item within this order
@@ -119,7 +119,7 @@ app.post('/webhook/order', async (req, res) => {
                 };
         
                 if (customerAddress.address2 != "") {data.address2 = customerAddress.address2;} //sets an address2 if there is an address2        
-                
+                if (data.customerEmail == null) {data.customerEmail = body.contact_email;}
                 sendEmail(data);
                 for (var l = 0; l < emails.length; l++) //deleting all items with same seller so that they aren't detected later in the loop
                 {
@@ -142,7 +142,7 @@ app.post('/webhook/order', async (req, res) => {
                 };
         
                 if (customerAddress.address2 != "") {data.address2 = customerAddress.address2;} //sets an address2 if there is an address2        
-                
+                if (data.customerEmail == null) {data.customerEmail = body.contact_email;}
                 sendEmail(data); 
                 delete lineItems[i];  
             }
@@ -150,10 +150,10 @@ app.post('/webhook/order', async (req, res) => {
 
         }
     }
+    else {console.log("Error: line items less than 1");}
 })
 
 /*Current problems/questions:
-What's the host if we're running the app on our own web server?
 */
 
 
@@ -259,10 +259,7 @@ app.get('/', async (req, res) => {
 
         }
     }
-    //console.log(lineItems);
 })
 
 /*Current problems/questions:
-What's the host if we're running the app on our own web server?
-Very rare case of email property being null
 */
