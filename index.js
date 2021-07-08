@@ -9,7 +9,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.json())
-app.use(express.static("C:/Rerouted/views/styles.css"));
+//app.use(express.static("C:/Rerouted/views/styles.css"));
 
 //const link = 'https://752fa5ab548b2853ffff1fdccc5e1be2:c06eaec5f0217effc29509fe2f4d90a5@rerouted-co-op.myshopify.com/admin/api/2021-04/orders.json'; //shopify 'order' api key. Use fetch to access
 
@@ -36,8 +36,7 @@ async function sendEmail(data) {
         } else {
             var mainOptions = {
                 from: 'support@rerouted.co',
-                to: 'max@rerouted.co',
-                // to: 'data.sellerEmail',
+                to: 'data.sellerEmail',
                 subject: "Congrats! You've sold an item on Rerouted!",
                 html: ejs //ejs template with data injected
             };
