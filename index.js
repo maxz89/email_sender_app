@@ -63,7 +63,7 @@ app.post('/webhook/order', async (req, res) => {
     const customerAddress = body.billing_address;
 
     //console.log(body.line_items);
-    if (lineItems.length = 1) //if there is only one item this order... then we just send one email by calling the sendEmail function once
+    if (lineItems.length == 1) //if there is only one item this order... then we just send one email by calling the sendEmail function once
     {
         var data = { //sets all the important info we need to inject into the email template
             name: customer.first_name,
@@ -80,6 +80,7 @@ app.post('/webhook/order', async (req, res) => {
         if (customerAddress.address2 != "") {data.address2 = customerAddress.address2;} //sets an address2 if there is an address2        
         if (data.customerEmail == null) {data.customerEmail = body.contact_email;}
         sendEmail(data); //passess data from shopify to our email template to send
+        res.status(200).end()
     }
 
     else if (lineItems.length > 1) //if there are more than one item this order...
@@ -124,6 +125,7 @@ app.post('/webhook/order', async (req, res) => {
                 {
                     delete lineItems[l];  
                 }
+
             }
 
             else //process for handling data if this item has a unique seller
@@ -143,13 +145,14 @@ app.post('/webhook/order', async (req, res) => {
                 if (customerAddress.address2 != "") {data.address2 = customerAddress.address2;} //sets an address2 if there is an address2        
                 if (data.customerEmail == null) {data.customerEmail = body.contact_email;}
                 sendEmail(data); 
-                delete lineItems[i];  
+                delete lineItems[i]; 
             }
 
 
         }
+        res.status(200).end();
     }
-    else {console.log("Error: line items less than 1");}
+    else {console.log("Error: line items less than 1"); res.status(200).end();}
 })
 
 /*Current problems/questions:

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap" rel="stylesheet">
+    <title>Lower Product Price Email</title>
+     
+    <style>
+        .message {
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+        .center {
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        }
+
+        #coupon {
+            background-color: rgb(49, 129, 49);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #couponCode {
+            text-align: center;
+        }
+
+        #listing {
+            background-color: rgb(49, 129, 49);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            text-align: center;
+            font-size: 14px;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+
+    
+    </style>
+    
+</head>
+
+<body>
+    <img src="https://cdn.shopify.com/s/files/1/0076/0889/3525/files/rerouted-full-RGB-transparent-large.png?v=1614280327" alt='rerouted logo' style='width: 100px; height: auto'>
+    <div class="message" id="">
+        <p style="font-size: x-large; font-weight:bold;">Would you like to lower the price?</p>
+        <p>Your <%= productName %> has been live for 2 weeks. Lowering the price would help get your gear back outdoors faster! Would you be interested in lowering your price 10% from $<%= productPrice %> to $<%= discountedPrice %>? If so, just click the button below to lower your price by 10%!</p>
+        <br><br>
+        <a href= "<%= page %>" id="listing">Click here to lower the price by 10%!</a>
+        <br><br>
+        <p style="font-size: small; font-weight:lighter;">If you clicked the button, please give it a few minutes for the changes to go live. Thanks!</p>
+   
+    </div>
+
+</body>

@@ -4,12 +4,11 @@
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">    
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap" rel="stylesheet">
-    <title>Upload Received Email</title>
+    <title>Item Upload Confirmed Email</title>
      
     <style>
         .message {
         font-family: 'Titillium Web', sans-serif;
-        font-weight: 500;
     }
 
         .center {
@@ -20,7 +19,7 @@
         transform: translate(-50%, -50%);
         }
 
-        #button {
+        #coupon {
             background-color: rgb(49, 129, 49);
             border: none;
             color: white;
@@ -33,6 +32,21 @@
             text-align: center;
         }
 
+        #listing {
+            background-color: rgb(49, 129, 49);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            text-align: center;
+            font-size: 14px;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+
     
     </style>
     
@@ -41,16 +55,11 @@
 <body>
     <img src="https://cdn.shopify.com/s/files/1/0076/0889/3525/files/rerouted-full-RGB-transparent-large.png?v=1614280327" alt='rerouted logo' style='width: 100px; height: auto'>
     <div class="message">
-        <p style="font-size: x-large; font-weight:bold;">Thanks for uploading your item on Rerouted!</p> 
-        <p>We are processing your item right now and will keep you updated once it's been approved, so in the meantime take this 10% off coupon and shop at Rerouted!</p>
-        <p id='couponCode'>Enter this code at the checkout for 10% off: <span style="font-weight:bold; font-size:large;">IREUSEGEAR</span></p>
+        <p style="font-size: x-large; font-weight:bold;">Your item has been approved!</p>
+        <p>Your <%= productName %> is now live on our website and ready to find a new home. You can view your listing below.</p>
         <br><br>
-        <div class="center">
-                <button id="button" onclick=" window.open('http://rerouted.co','_blank')">Shop now!</button>
-        </div>
-        <br><br><br>
-        <p style="bottom:0%; font-size:smaller; font-weight:5; text-align:center;">If you have any questions, just reply to this email!</p>
-    </div>              
-                  
+        <a id="listing" href= "<https://rerouted.co/collections/all?sort_by=created-descending>">View your listing!</a>
+    </div>
 
-</html>
+    <script src=""></script>   
+</body>

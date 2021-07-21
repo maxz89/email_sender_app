@@ -26,14 +26,14 @@ async function sendEmail(data) {
         });
 
         /*injects data into the template and */
-      ejs.renderFile('C:/Rerouted/views/received.ejs', data, function (err, ejs) { //reads over the empty template and injects the data into the template. Then calls callback function to send finished template
+      ejs.renderFile('C:/Rerouted/views/confirmed.ejs', data, function (err, ejs) { //reads over the empty template and injects the data into the template. Then calls callback function to send finished template
         if (err) {
             console.log(err);
         } else {
             var mainOptions = {
                 from: 'support@rerouted.co',
                 to: 'data.sellerEmail',
-                subject: "We've received your item upload!",
+                subject: "We've approved your item upload!",
                 html: ejs //ejs template with data injected
             };
             console.log("html data ======================>", mainOptions.html);
@@ -48,16 +48,20 @@ async function sendEmail(data) {
     });
 }
 
-app.post('/webhook/upload', async (req, res) => {
-    const body = await req.body;
+app.post('/webhook/confirmed', (req, res) => {
+    const body = req.body;
+    if (body.status == "active") {
+        var data = {
+            sellerEmail: body.vendor,
+            productName: body.title,
+            productId: body.product_id,
+        }
+        sendEmail(data);
+    }
     var data = {
         sellerEmail: body.vendor,
+        productName: body.title,
+        productId: body.id
     }
-
-    sendEmail(data);
-
     res.status(200).end()
 })
-
-/*Potential problems/questions:
-*/
